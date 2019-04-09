@@ -30,7 +30,7 @@ public class DAL {
         }
         Retrofit retrofit = new Retrofit.Builder()
                 .client(httpClientBuilder.build())
-                .baseUrl("http://10.0.0.2:8080"+"/MyService/")
+                .baseUrl("http://192.168.31.102:8080"+"/MyService/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(DALCallAdapterFactory.create())
                 .build();
