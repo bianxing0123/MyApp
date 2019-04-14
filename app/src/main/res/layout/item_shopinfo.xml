@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/list_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/selector_common_item_bg">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:padding="5dp">
+
+        <ImageView
+            android:id="@+id/shopInfoPic"
+            android:layout_width="@dimen/business_image_width"
+            android:layout_height="@dimen/business_image_height"
+            android:src="@mipmap/ic_launcher"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_major"
+            android:layout_marginBottom="@dimen/spacing_major"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                tools:text="必胜宅急送"
+                android:textSize="16sp"
+                android:textColor="@color/primary_text"
+                />
+
+            <TextView
+                android:id="@+id/txt_month_sales"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                tools:text="月售23份"
+                android:textSize="12sp"
+                android:textColor="@color/secondary_text"
+                />
+
+            <TextView
+                android:id="@+id/txt_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                tools:text="起送 ￥25  配送费 ￥1  平均45分钟"
+                android:textSize="12sp"
+                android:textColor="@color/secondary_text"
+                />
+
+    </LinearLayout>
+
+</LinearLayout>
