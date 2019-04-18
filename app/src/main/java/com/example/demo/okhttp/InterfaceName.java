@@ -2,6 +2,7 @@ package com.example.demo.okhttp;
 
 
 import com.example.demo.okhttp.entity.entity.UserEntity;
+import com.example.demo.okhttp.entity.response.ShopListResponse;
 import com.example.demo.okhttp.entity.response.UserResponse;
 
 import retrofit2.Call;
@@ -15,5 +16,8 @@ public interface InterfaceName {
 
     @POST("userLoginService/userLogin")
     Observable<UserResponse> login(@Body UserEntity entity);
+
+    @POST("shopListService/shopList")
+    Observable<ShopListResponse> getShopList();
 
 }

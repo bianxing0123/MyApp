@@ -12,6 +12,8 @@ import com.example.demo.R;
 import com.example.demo.adapter.ViewPagerAdapter;
 import com.example.demo.fragment.ShopFormFragment;
 import com.example.demo.fragment.TestFragment;
+import com.example.demo.okhttp.Method;
+import com.example.demo.okhttp.entity.entity.ShopInfoEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,12 +24,14 @@ public class HomeActivity extends AppCompatActivity {
     private ViewPagerAdapter viewPagerAdapter;
     private ViewPager viewPager;
     private MenuItem menuItem;
+    private Method method;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        method = new Method();
         initData();
         initView();
     }

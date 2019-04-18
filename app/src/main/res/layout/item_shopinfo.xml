@@ -23,8 +23,8 @@
     </LinearLayout>
 
     <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginTop="@dimen/spacing_major"
             android:layout_marginBottom="@dimen/spacing_major"
             android:orientation="vertical">
@@ -32,8 +32,10 @@
             <TextView
                 android:id="@+id/txt_name"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="4"
                 android:layout_alignParentTop="true"
+                android:layout_marginTop="5dp"
                 tools:text="必胜宅急送"
                 android:textSize="16sp"
                 android:textColor="@color/primary_text"
@@ -42,7 +44,8 @@
             <TextView
                 android:id="@+id/txt_month_sales"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="3"
                 android:layout_centerVertical="true"
                 tools:text="月售23份"
                 android:textSize="12sp"
@@ -52,7 +55,8 @@
             <TextView
                 android:id="@+id/txt_content"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="2"
                 android:layout_alignParentBottom="true"
                 tools:text="起送 ￥25  配送费 ￥1  平均45分钟"
                 android:textSize="12sp"

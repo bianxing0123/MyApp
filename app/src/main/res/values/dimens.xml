@@ -14,7 +14,7 @@
 
     <dimen name="spacing_micro">4dp</dimen>
     <dimen name="spacing_minor">10dp</dimen>
-    <dimen name="spacing_major">15dp</dimen>
+    <dimen name="spacing_major">5dp</dimen>
     <dimen name="spacing_massive">24dp</dimen>
 
     <dimen name="font_larger">22sp</dimen>
