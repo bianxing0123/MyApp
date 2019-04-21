@@ -2,6 +2,7 @@ package com.example.demo.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,17 +12,19 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.PopupWindow;
 
 import com.example.demo.R;
-import com.example.demo.activity.HomeActivity;
 import com.example.demo.activity.ShopDetailActivity;
 import com.example.demo.adapter.ShopFormAdapter;
 import com.example.demo.okhttp.Method;
+import com.example.demo.okhttp.entity.entity.FoodBean;
 import com.example.demo.okhttp.entity.entity.ShopInfoEntity;
+import com.example.demo.okhttp.entity.entity.TypeBean;
 import com.example.demo.util.ToastUtil;
 import com.scwang.smartrefresh.header.MaterialHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -32,16 +35,18 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.example.demo.activity.ShopDetailActivity.fList;
+import static com.example.demo.activity.ShopDetailActivity.tList;
 
 /**
  * author: GJZ
  * email: 597605602@qq.com
  */
-public class ShopFormFragment extends Fragment {
+public class ShopFormFragment extends Fragment{
 
     @BindView(R.id.refresh_layout)
     RefreshLayout refreshLayout;
@@ -49,6 +54,9 @@ public class ShopFormFragment extends Fragment {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
+
+    public static int shopid;
+    public static String shopname;
     private View view;
     private ShopFormAdapter mAdapter;
     public RecyclerView mRecyclerView;
@@ -62,7 +70,6 @@ public class ShopFormFragment extends Fragment {
 
         //获取fragment的layout
         view = inflater.inflate(R.layout.fragment_shopform, container, false);
-        //shopsEntityList.clear();
         ButterKnife.bind(this, view);
         ToastUtil.init(getActivity());
         method = new Method();
@@ -105,12 +112,12 @@ public class ShopFormFragment extends Fragment {
         mAdapter.setOnItemClickListener(new ShopFormAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(RecyclerView parent, View view, int position, ShopInfoEntity data) {
-                ToastUtil.showToast("这个是第"+position+"个位置");
                 Intent intent = new Intent(getActivity(),ShopDetailActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putInt("shopid",data.getShopinfoid());
-                bundle.putString("shopname",data.getShopname());
-                intent.putExtras(bundle);
+                shopid = data.getShopinfoid();
+                shopname = data.getShopname();
+                initFoodType();
+                initFoodDetail();
+                popwindow();
                 startActivity(intent);
             }
         });
@@ -155,5 +162,42 @@ public class ShopFormFragment extends Fragment {
                 refreshlayout.finishLoadMore(500/*,false*/);//传入false表示加载失败
             }
         });
+    }
+
+    private void initFoodDetail() {
+        method.getFoodDetail(shopid).subscribe(foodDetailResponse -> {
+            fList.clear();
+            for (int i=0;i<foodDetailResponse.foodBeanArrayList.size();i++){
+                System.out.println(foodDetailResponse.foodBeanArrayList.get(i));
+                fList.add(foodDetailResponse.foodBeanArrayList.get(i));
+            }
+        });
+    }
+
+    private void initFoodType() {
+        method.getFoodType(shopid).subscribe(foodTypeResponse -> {
+            tList.clear();
+            for (int i=0;i<foodTypeResponse.typeBeanArrayList.size();i++){
+                TypeBean typeBean = new TypeBean();
+                typeBean.setName(foodTypeResponse.typeBeanArrayList.get(i).getName());
+                tList.add(typeBean);
+            }
+        });
+    }
+
+    private void popwindow() {
+        final PopupWindow popupWindow = new PopupWindow();
+        popupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+        popupWindow.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
+        popupWindow.setFocusable(true);
+        view = LayoutInflater.from(getActivity()).inflate(R.layout.popupwindow,null);
+        popupWindow.setContentView(view);
+        popupWindow.showAtLocation(getView(), Gravity.CENTER,0,0);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                popupWindow.dismiss();
+            }
+        },500);
     }
 }

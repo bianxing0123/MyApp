@@ -2,6 +2,8 @@ package com.example.demo.okhttp;
 
 
 import com.example.demo.okhttp.entity.entity.UserEntity;
+import com.example.demo.okhttp.entity.response.FoodDetailResponse;
+import com.example.demo.okhttp.entity.response.FoodTypeResponse;
 import com.example.demo.okhttp.entity.response.ShopListResponse;
 import com.example.demo.okhttp.entity.response.UserResponse;
 
@@ -19,5 +21,11 @@ public interface InterfaceName {
 
     @POST("shopListService/shopList")
     Observable<ShopListResponse> getShopList();
+
+    @POST("foodDetailService/foodType")
+    Observable<FoodTypeResponse> getFoodType(@Body int shopid);
+
+    @POST("foodDetailService/foodDetail")
+    Observable<FoodDetailResponse> getFoodDetail(@Body int shopid);
 
 }

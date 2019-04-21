@@ -222,4 +222,6 @@
     <!-- ToolBar -->
     <string name="toolbar_home">我要点餐</string>
 
+    <string name="scroll_behavior">@string/appbar_scrolling_view_behavior</string>
+
 </resources>

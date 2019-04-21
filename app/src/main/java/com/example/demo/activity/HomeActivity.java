@@ -13,7 +13,6 @@ import com.example.demo.adapter.ViewPagerAdapter;
 import com.example.demo.fragment.ShopFormFragment;
 import com.example.demo.fragment.TestFragment;
 import com.example.demo.okhttp.Method;
-import com.example.demo.okhttp.entity.entity.ShopInfoEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +42,6 @@ public class HomeActivity extends AppCompatActivity {
         bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottomNavigationView);
         viewPager = (ViewPager) findViewById(R.id.vp);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        //BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
